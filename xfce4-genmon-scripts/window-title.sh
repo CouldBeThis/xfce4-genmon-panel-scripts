@@ -3,13 +3,13 @@
 ## genmon script for displaying the active window title on the panel
 
 ## truncating active window title after 60chars
-WindowTite=$(xdotool getactivewindow getwindowname | cut -c -65)
+WindowTitle=$(xdotool getactivewindow getwindowname | cut -c -65)
 NumberOfOpenedWindows=$(wmctrl -l | wc -l)
-LengthOfTitle=$(echo ${WindowTite})
+LengthOfTitle=$(echo ${WindowTitle})
 
 Info="<txt>"
 Info+="<span weight='Regular' fgcolor='grey'>"
-Info+="${WindowTite}"
+Info+="${WindowTitle}"
 if [ "${LengthOfTitle}" -eq 65 ]; then
     Info+="..."
 fi
