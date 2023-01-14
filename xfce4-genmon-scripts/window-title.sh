@@ -15,16 +15,7 @@ if [ "${LengthOfTitle}" -eq 65 ]; then
 fi
 Info+="</span>"
 Info+="</txt>"
-## find the optimum number of opened up windows at startup. I've set 3 since its XFCE4-Panel, Plank and Desktop.
-if [ "${NumberOfOpenedWindows}" -gt 3 ]; then
-Info+="<txtclick>
-	rofi -combi-modi window
-	-theme sidetab
-	-show window
-	-icon-theme "Papirus"
-	-show-icons
-</txtclick>"
-fi
+
 echo -e "${Info}"
 
 MoreInfo="<tool>"
