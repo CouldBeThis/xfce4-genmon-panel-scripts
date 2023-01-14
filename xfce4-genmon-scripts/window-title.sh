@@ -1,21 +1,23 @@
 #!/usr/bin/env bash
 
-#genmon script for displaying the active window title on the panel
+## genmon script to list desktops
 
-WINDOW_TITLE=$(xdotool getactivewindow getwindowname | cut -c -65) #truncating active window title after 60chars
-NUMBER_OF_OPENED_WINDOWS=$(wmctrl -l | wc -l)
-LENGTH_OF_TITLE=$(echo ${WINDOW_TITLE})
+## truncating active window title after 60chars
+WindowTite=$(xdotool getactivewindow getwindowname | cut -c -65)
+NumberOfOpenedWindows=$(wmctrl -l | wc -l)
+LengthOfTitle=$(echo ${WindowTite})
 
-INFO="<txt>"
-INFO+="<span weight='Regular' fgcolor='grey'>"
-INFO+="${WINDOW_TITLE}"
-if [ "${LENGTH_OF_TITLE}" -eq 65 ]; then
-    INFO+="..."
+Info="<txt>"
+Info+="<span weight='Regular' fgcolor='grey'>"
+Info+="${WindowTite}"
+if [ "${LengthOfTitle}" -eq 65 ]; then
+    Info+="..."
 fi
-INFO+="</span>"
-INFO+="</txt>"
-if [ "${NUMBER_OF_OPENED_WINDOWS}" -gt 3 ]; then #find the optimum number of opened up windows at startup. I've set 3 since its XFCE4-Panel, Plank and Desktop. 
-INFO+="<txtclick>
+Info+="</span>"
+Info+="</txt>"
+## find the optimum number of opened up windows at startup. I've set 3 since its XFCE4-Panel, Plank and Desktop.
+if [ "${NumberOfOpenedWindows}" -gt 3 ]; then
+Info+="<txtclick>
 	rofi -combi-modi window
 	-theme sidetab
 	-show window
@@ -23,10 +25,11 @@ INFO+="<txtclick>
 	-show-icons
 </txtclick>"
 fi
-echo -e "${INFO}"
+echo -e "${Info}"
 
-MORE_INFO="<tool>"
-MORE_INFO+="${NULL_VALUE}"  #to hide the tooltip
-MORE_INFO+="</tool>"
+MoreInfo="<tool>"
+## to hide the tooltip
+MoreInfo+="${NULL_VALUE}"
+MoreInfo+="</tool>"
 
-echo -e "${MORE_INFO}"
+echo -e "${MoreInfo}"
