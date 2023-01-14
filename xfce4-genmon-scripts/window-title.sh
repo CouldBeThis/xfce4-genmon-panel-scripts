@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-## genmon script to list desktops
+## genmon script for displaying the active window title on the panel
 
 ## truncating active window title after 60chars
 WindowTite=$(xdotool getactivewindow getwindowname | cut -c -65)
